@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yijun Liu | PhD Candidate, HIT-Shenzhen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:       #2D6CB4;
+      --blue-dark:  #1B4F8A;
+      --blue-deep:  #0F3360;
+      --blue-light: #EAF1FB;
+      --blue-mid:   #C2D8F0;
+      --gold:       #B08030;
+      --gold-light: #FDF4E3;
+      --text:       #1A2332;
+      --text-mid:   #3D5166;
+      --text-muted: #637085;
+      --border:     #D4E0EE;
+      --bg:         #FFFFFF;
+      --bg-soft:    #F5F8FC;
+      --radius:     8px;
+      --nav-h:      58px;
+      --max-w:      900px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.72;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { color: var(--blue-dark); text-decoration: underline; }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1rem, 4vw, 2.5rem);
+    }
+
+    .nav-brand {
+      font-size: 0.97rem; font-weight: 700;
+      color: var(--blue-deep); letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex; gap: 1.6rem; list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.84rem; font-weight: 500;
+      color: var(--text-muted);
+      transition: color .18s;
+    }
+    .nav-links a:hover { color: var(--blue); text-decoration: none; }
+
+    /* ─── LAYOUT ──────────────────────────────────────── */
+    main {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: calc(var(--nav-h) + 3.2rem) clamp(1rem, 4vw, 2rem) 5rem;
+    }
+
+    /* ─── PROFILE ─────────────────────────────────────── */
+    .profile {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 3rem;
+      align-items: start;
+      padding-bottom: 3.2rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3.4rem;
+    }
+
+    .photo-col {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 1.2rem;
+    }
+
+    .photo-ring {
+      width: 176px; height: 176px;
+      border-radius: 50%;
+      padding: 4px;
+      background: linear-gradient(135deg, var(--blue) 0%, #5A9FD4 100%);
+      box-shadow: 0 8px 30px rgba(45,108,180,0.28);
+      flex-shrink: 0;
+    }
+
+    .photo-ring img {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 8%;
+      display: block;
+      border: 3px solid #fff;
+    }
+
+    .info-col { padding-top: 0.2rem; }
+
+    .info-col h1 {
+      font-size: 2.5rem; font-weight: 700;
+      color: var(--text); letter-spacing: -0.04em;
+      line-height: 1.15; margin-bottom: 0.35rem;
+    }
+
+    .title-line {
+      font-size: 1.02rem; font-weight: 500;
+      color: var(--blue); margin-bottom: 0.15rem;
+    }
+
+    .inst-line {
+      font-size: 0.9rem; color: var(--text-muted);
+      margin-bottom: 1.3rem;
+    }
+
+    .bio {
+      font-size: 0.93rem; color: var(--text-mid);
+      line-height: 1.75; margin-bottom: 1.4rem;
+      max-width: 540px;
+    }
+
+    .bio strong { color: var(--text); font-weight: 600; }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+
+    .chip {
+      display: inline-flex; align-items: center; gap: 0.38rem;
+      padding: 0.38rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.82rem; font-weight: 500;
+      text-decoration: none !important;
+      transition: all .18s;
+    }
+
+    .chip-solid {
+      background: var(--blue); color: #fff;
+      border: 1.5px solid var(--blue);
+    }
+    .chip-solid:hover { background: var(--blue-dark); border-color: var(--blue-dark); color:#fff; }
+
+    .chip-outline {
+      background: var(--blue-light); color: var(--blue-dark);
+      border: 1.5px solid var(--blue-mid);
+    }
+    .chip-outline:hover { background: #d4e7f8; }
+
+    /* ─── SECTIONS ────────────────────────────────────── */
+    section { margin-bottom: 3.4rem; }
+
+    .sec-title {
+      font-size: 1.22rem; font-weight: 700;
+      color: var(--text); letter-spacing: -0.02em;
+      padding-bottom: 0.55rem;
+      border-bottom: 2.5px solid var(--blue);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── INTEREST TAGS ───────────────────────────────── */
+    .tags { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+
+    .tag {
+      background: var(--blue-light); color: var(--blue-dark);
+      border: 1px solid var(--blue-mid);
+      padding: 0.32rem 0.82rem; border-radius: 20px;
+      font-size: 0.83rem; font-weight: 500;
+    }
+
+    /* ─── STATS BAR ───────────────────────────────────── */
+    .stats {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.6rem;
+      display: flex; align-items: center; gap: 0;
+      margin-bottom: 2rem;
+    }
+
+    .stat { text-align: center; padding: 0 1.4rem; }
+    .stat:first-child { padding-left: 0; }
+
+    .stat-n {
+      font-size: 1.9rem; font-weight: 700;
+      color: var(--blue); line-height: 1;
+    }
+
+    .stat-lbl {
+      font-size: 0.74rem; color: var(--text-muted);
+      margin-top: 0.2rem; white-space: nowrap;
+    }
+
+    .stat-sep {
+      width: 1px; height: 44px;
+      background: var(--border); flex-shrink: 0;
+    }
+
+    .stats-scholar { margin-left: auto; }
+
+    /* ─── PUB LIST ────────────────────────────────────── */
+    .sub-label {
+      font-size: 0.78rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--text-muted); margin: 1.8rem 0 0.9rem;
+    }
+    .sub-label:first-of-type { margin-top: 0; }
+
+    .pub {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.05rem 1.2rem;
+      margin-bottom: 0.75rem;
+      background: var(--bg);
+      transition: border-color .18s, box-shadow .18s;
+    }
+    .pub:hover {
+      border-color: var(--blue);
+      box-shadow: 0 3px 14px rgba(45,108,180,.11);
+    }
+
+    .pub-title {
+      font-family: 'Lora', Georgia, serif;
+      font-style: italic;
+      font-size: 0.94rem;
+      color: var(--text);
+      line-height: 1.55;
+      margin-bottom: 0.38rem;
+    }
+
+    .pub-authors {
+      font-size: 0.82rem; color: var(--text-muted);
+      margin-bottom: 0.45rem;
+    }
+    .pub-authors strong { color: var(--text); font-weight: 600; }
+
+    .pub-meta {
+      display: flex; align-items: center;
+      flex-wrap: wrap; gap: 0.5rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 4px;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .badge-a   { background:#FFF3E0; color:#C84B00; border:1px solid #FFBF7A; }
+    .badge-b   { background:#E8F5E9; color:#276227; border:1px solid #9EC99E; }
+    .badge-q1  { background:#EEE8FF; color:#4527A0; border:1px solid #C3B1F0; }
+    .badge-pre { background:#F1F3F6; color:#4B5666; border:1px solid #CDD3DC; }
+
+    .pub-venue {
+      font-size: 0.81rem; color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .pub-year {
+      font-size: 0.78rem; color: var(--text-muted);
+      margin-left: auto; flex-shrink: 0;
+    }
+
+    /* ─── EDUCATION ───────────────────────────────────── */
+    .edu-list { display: flex; flex-direction: column; gap: 0; }
+
+    .edu {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      column-gap: 1.2rem;
+      padding: 1.1rem 0;
+      border-bottom: 1px solid var(--bg-soft);
+    }
+    .edu:last-child { border-bottom: none; }
+
+    .edu-school {
+      font-size: 0.9rem; font-weight: 600;
+      color: var(--blue-dark); margin-bottom: 0.2rem;
+    }
+
+    .edu-degree {
+      font-size: 0.9rem; color: var(--text);
+      font-weight: 500; margin-bottom: 0.18rem;
+    }
+
+    .edu-detail { font-size: 0.8rem; color: var(--text-muted); }
+
+    .edu-right { text-align: right; }
+
+    .edu-period {
+      font-size: 0.82rem; color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .edu-loc { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.1rem; }
+
+    /* ─── AWARDS ──────────────────────────────────────── */
+    .award {
+      display: flex; justify-content: space-between;
+      align-items: baseline;
+      padding: 0.58rem 0;
+      border-bottom: 1px solid var(--bg-soft);
+      font-size: 0.9rem;
+    }
+    .award:last-child { border-bottom: none; }
+    .award-yr {
+      font-size: 0.8rem; color: var(--text-muted);
+      flex-shrink: 0; margin-left: 1rem;
+    }
+
+    /* ─── SERVICE ─────────────────────────────────────── */
+    .service-row {
+      font-size: 0.9rem; padding: 0.5rem 0;
+    }
+    .srole { font-weight: 600; color: var(--blue-dark); }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.8rem; color: var(--text-muted);
+      line-height: 1.8;
+    }
+    footer a { color: var(--blue); }
+
+    /* ─── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 680px) {
+      .profile {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
+      .photo-col { flex-direction: row; align-items: center; gap: 1.4rem; }
+      .photo-ring { width: 110px; height: 110px; }
+      .info-col h1 { font-size: 1.9rem; }
+      .nav-links { gap: 0.9rem; }
+      .stats { flex-wrap: wrap; justify-content: center; }
+      .stats-scholar { margin-left: 0; width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ════════════════════════════════════════════ -->
+<nav>
+  <span class="nav-brand">Yijun Liu</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#service">Service</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- ═══ PROFILE ═══════════════════════════════════════ -->
+  <div class="profile">
+    <div class="photo-col">
+      <div class="photo-ring">
+        <img src="image.png" alt="Yijun Liu">
+      </div>
+    </div>
+    <div class="info-col">
+      <h1>Yijun Liu</h1>
+      <p class="title-line">PhD Candidate in Computer Science</p>
+      <p class="inst-line">Harbin Institute of Technology, Shenzhen &nbsp;·&nbsp; Shenzhen, China</p>
+      <p class="bio">
+        I am a fourth-year PhD candidate at the School of Computer Science and Technology,
+        <strong>Harbin Institute of Technology, Shenzhen (HIT-SZ)</strong>,
+        advised by <a href="https://homepage.hit.edu.cn/sujingyong" target="_blank" rel="noopener"><strong>Prof. Jingyong Su</strong></a>.
+        My research centers on <strong>hallucination detection</strong> and
+        <strong>uncertainty estimation</strong> in multimodal large language models (MLLMs),
+        and <strong>failure detection</strong> under real-world distribution shifts.
+        I have published at top-tier venues including
+        <strong>NeurIPS</strong>, <strong>AAAI</strong>, <strong>IEEE TCSVT</strong>, and <strong>ICASSP</strong>,
+        and serve as a reviewer for ICLR, NeurIPS, and CVPR.
+      </p>
+      <div class="chips">
+        <a href="mailto:yijunliu@hit.edu.cn" class="chip chip-solid">
+          ✉&thinsp; yijunliu@hit.edu.cn
+        </a>
+        <a href="https://scholar.google.com/citations?user=PHY8ZtgAAAAJ&hl=en"
+           class="chip chip-outline" target="_blank" rel="noopener">
+          Google Scholar
+        </a>
+        <span class="chip chip-outline" style="cursor:default;">
+          📍 Shenzhen, China
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ RESEARCH INTERESTS ════════════════════════════ -->
+  <section id="about">
+    <h2 class="sec-title">Research Interests</h2>
+    <div class="tags">
+      <span class="tag">Multimodal Large Language Models</span>
+      <span class="tag">Hallucination Detection &amp; Mitigation</span>
+      <span class="tag">Uncertainty Estimation</span>
+      <span class="tag">Failure Detection</span>
+      <span class="tag">Out-of-Distribution Detection</span>
+      <span class="tag">Distribution Shift Robustness</span>
+      <span class="tag">Low-Light Image Enhancement</span>
+    </div>
+  </section>
+
+  <!-- ═══ PUBLICATIONS ══════════════════════════════════ -->
+  <section id="publications">
+    <h2 class="sec-title">Publications</h2>
+
+    <div style="margin-bottom:1.6rem">
+      <a href="https://scholar.google.com/citations?user=PHY8ZtgAAAAJ&hl=en"
+         class="chip chip-outline" target="_blank" rel="noopener">
+        View Google Scholar &rarr;
+      </a>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">
+        Typicalness-Aware Learning for Failure Detection
+      </div>
+      <div class="pub-authors">
+        <strong>Y. Liu</strong>, J. Cui, Z. Tian, et al.
+      </div>
+      <div class="pub-meta">
+        <span class="badge badge-a">CCF-A</span>
+        <span class="pub-venue">
+          Conference on Neural Information Processing Systems
+          <strong style="font-style:normal">(NeurIPS)</strong>
+        </span>
+        <span class="pub-year">2024</span>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">
+        Failure Detection in Image Segmentation under Conditions of Semantic
+        and Covariate Shifts
+      </div>
+      <div class="pub-authors">
+        <strong>Y. Liu</strong>, J. Wang, Z. Tian, et al.
+      </div>
+      <div class="pub-meta">
+        <span class="badge badge-q1">CAS Q1</span>
+        <span class="pub-venue">
+          IEEE Transactions on Circuits and Systems for Video Technology
+          <strong style="font-style:normal">(TCSVT)</strong>
+        </span>
+        <span class="pub-year">2026</span>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">
+        SCIR-Net: Structured Color Image Representation Based 3D Object Detection
+        Network from Point Clouds
+      </div>
+      <div class="pub-authors">
+        Q. He, Z. Wang, H. Zeng, Y. Zeng, <strong>Y. Liu</strong>
+      </div>
+      <div class="pub-meta">
+        <span class="badge badge-a">CCF-A</span>
+        <span class="pub-venue">
+          AAAI Conference on Artificial Intelligence
+          <strong style="font-style:normal">(AAAI)</strong>
+        </span>
+        <span class="pub-year">2022</span>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">
+        SVGA-Net: Sparse Voxel-Graph Attention Network for 3D Object Detection
+        from Point Clouds
+      </div>
+      <div class="pub-authors">
+        Q. He, Z. Wang, H. Zeng, Y. Zeng, <strong>Y. Liu</strong>
+      </div>
+      <div class="pub-meta">
+        <span class="badge badge-a">CCF-A</span>
+        <span class="pub-venue">
+          AAAI Conference on Artificial Intelligence
+          <strong style="font-style:normal">(AAAI)</strong>
+        </span>
+        <span class="pub-year">2022</span>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">
+        Stereo RGB and Deeper LiDAR-Based Network for 3D Object Detection
+        in Autonomous Driving
+      </div>
+      <div class="pub-authors">
+        Q. He, Z. Wang, H. Zeng, Y. Zeng, <strong>Y. Liu</strong>, S. Liu, B. Zeng
+      </div>
+      <div class="pub-meta">
+        <span class="badge badge-q1">CAS Q1</span>
+        <span class="pub-venue">
+          IEEE Transactions on Intelligent Transportation Systems
+          <strong style="font-style:normal">(TITS)</strong>
+        </span>
+        <span class="pub-year">2022</span>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">
+        PD-GAN: Perceptual-Details GAN for Extremely Noisy Low-Light
+        Image Enhancement
+      </div>
+      <div class="pub-authors">
+        <strong>Y. Liu</strong>, Z. Wang, Y. Zeng, et al.
+      </div>
+      <div class="pub-meta">
+        <span class="badge badge-b">CCF-B</span>
+        <span class="pub-venue">
+          IEEE International Conference on Acoustics, Speech and Signal Processing
+          <strong style="font-style:normal">(ICASSP)</strong>
+        </span>
+        <span class="pub-year">2021</span>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">
+        Structure Preserving Extremely Low Light Image Enhancement with Fractional
+        Order Differential Mask Guidance
+      </div>
+      <div class="pub-authors">
+        <strong>Y. Liu</strong>, Z. Wang, R. Geng, et al.
+      </div>
+      <div class="pub-meta">
+        <span class="badge badge-b">CCF-B</span>
+        <span class="pub-venue">ACM Multimedia Asia</span>
+        <span class="pub-year">2021</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ EDUCATION ═════════════════════════════════════ -->
+  <section id="education">
+    <h2 class="sec-title">Education</h2>
+    <div class="edu-list">
+
+      <div class="edu">
+        <div>
+          <div class="edu-school">
+            Harbin Institute of Technology, Shenzhen (HIT-SZ)
+          </div>
+          <div class="edu-degree">Ph.D. in Computer Science and Technology</div>
+          <div class="edu-detail">
+            GPA: 3.83 / 4.0 &nbsp;&middot;&nbsp; 985 / 211 / Double First-Class University
+          </div>
+        </div>
+        <div class="edu-right">
+          <div class="edu-period">Sep 2022 – Dec 2026</div>
+          <div class="edu-loc">Shenzhen, China</div>
+        </div>
+      </div>
+
+      <div class="edu">
+        <div>
+          <div class="edu-school">
+            University of Electronic Science and Technology of China (UESTC)
+          </div>
+          <div class="edu-degree">
+            M.Eng. in Electronic and Communication Engineering
+          </div>
+          <div class="edu-detail">
+            GPA: 3.72 / 4.0 &nbsp;&middot;&nbsp; 985 / 211 / Double First-Class University
+          </div>
+        </div>
+        <div class="edu-right">
+          <div class="edu-period">Sep 2019 – Jun 2022</div>
+          <div class="edu-loc">Chengdu, China</div>
+        </div>
+      </div>
+
+      <div class="edu">
+        <div>
+          <div class="edu-school">
+            University of Electronic Science and Technology of China (UESTC)
+          </div>
+          <div class="edu-degree">B.Eng. in Network Engineering</div>
+          <div class="edu-detail">
+            GPA: 3.50 / 4.0 &nbsp;&middot;&nbsp; 985 / 211 / Double First-Class University
+          </div>
+        </div>
+        <div class="edu-right">
+          <div class="edu-period">Sep 2015 – Jun 2019</div>
+          <div class="edu-loc">Chengdu, China</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ HONORS & AWARDS ═══════════════════════════════ -->
+  <section id="awards">
+    <h2 class="sec-title">Honors &amp; Awards</h2>
+
+    <div class="award">
+      <span>Outstanding Student Leader, Harbin Institute of Technology, Shenzhen</span>
+      <span class="award-yr">2023</span>
+    </div>
+    <div class="award">
+      <span>Outstanding Graduate, University of Electronic Science and Technology of China</span>
+      <span class="award-yr">2019</span>
+    </div>
+    <div class="award">
+      <span>First-Class People's Scholarship</span>
+      <span class="award-yr">2018</span>
+    </div>
+    <div class="award">
+      <span>Second Prize, Mathematical Contest in Modeling (MCM), USA</span>
+      <span class="award-yr">2018</span>
+    </div>
+    <div class="award">
+      <span>Third-Class People's Scholarship</span>
+      <span class="award-yr">2017</span>
+    </div>
+  </section>
+
+  <!-- ═══ ACADEMIC SERVICE ══════════════════════════════ -->
+  <section id="service">
+    <h2 class="sec-title">Academic Service</h2>
+    <div class="service-row">
+      <span class="srole">Conference Reviewer: </span>
+      ICLR &nbsp;·&nbsp; NeurIPS &nbsp;·&nbsp; CVPR
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ FOOTER ══════════════════════════════════════════ -->
+<footer>
+  <p>
+    Yijun Liu &nbsp;·&nbsp; School of Computer Science and Technology<br>
+    Harbin Institute of Technology, Shenzhen, Guangdong 518055, China<br>
+    <a href="mailto:yijunliu@hit.edu.cn">yijunliu@hit.edu.cn</a>
+    &nbsp;&nbsp;·&nbsp;&nbsp;
+    <a href="https://scholar.google.com/citations?user=PHY8ZtgAAAAJ&hl=en"
+       target="_blank" rel="noopener">Google Scholar</a>
+  </p>
+  <p style="margin-top:.6rem;font-size:.74rem;opacity:.7">
+    Last updated: May 2026
+  </p>
+</footer>
+
+</body>
+</html>
