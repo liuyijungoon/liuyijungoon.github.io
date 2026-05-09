@@ -322,6 +322,27 @@
       flex-shrink: 0; margin-left: 1rem;
     }
 
+    /* ─── NEWS ───────────────────────────────────────── */
+    .news-list { display: flex; flex-direction: column; }
+
+    .news-item {
+      display: flex; gap: 1.2rem;
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--bg-soft);
+      font-size: 0.9rem; align-items: baseline;
+    }
+    .news-item:last-child { border-bottom: none; }
+
+    .news-date {
+      font-size: 0.78rem; font-weight: 600;
+      color: var(--blue-dark);
+      white-space: nowrap; flex-shrink: 0;
+      min-width: 88px;
+    }
+
+    .news-text { color: var(--text-mid); line-height: 1.65; }
+    .news-text strong { color: var(--text); font-weight: 600; }
+
     /* ─── SERVICE ─────────────────────────────────────── */
     .service-row {
       font-size: 0.9rem; padding: 0.5rem 0;
@@ -360,6 +381,7 @@
 <nav>
   <span class="nav-brand">Yijun Liu</span>
   <ul class="nav-links">
+    <li><a href="#news">News</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#publications">Publications</a></li>
     <li><a href="#education">Education</a></li>
@@ -406,6 +428,22 @@
       </div>
     </div>
   </div>
+
+  <!-- ═══ NEWS ════════════════════════════════════════════ -->
+  <section id="news">
+    <h2 class="sec-title">News</h2>
+    <div class="news-list">
+
+      <div class="news-item">
+        <span class="news-date">Jan 2026</span>
+        <span class="news-text">
+          One paper accepted by <strong>IEEE Transactions on Circuits and Systems for Video Technology (TCSVT)</strong>
+          &mdash; CAS Q1 journal.
+        </span>
+      </div>
+
+    </div>
+  </section>
 
   <!-- ═══ RESEARCH INTERESTS ════════════════════════════ -->
   <section id="about">
